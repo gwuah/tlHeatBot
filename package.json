@@ -1,0 +1,17 @@
+{
+  "name": "heatbot",
+  "version": "1.0.0",
+  "description": "a twitter bot that alerts people whenever there's heat on the timeLine",
+  "main": "bot.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gwuah",
+  "license": "ISC",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
+}
