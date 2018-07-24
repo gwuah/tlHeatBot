@@ -7,8 +7,8 @@ module.exports = {
   },
   
   me: { 
-    screen_name: "oh_promi",
-    user_id: '949741141548814336'
+    screen_name: "twoRJZ",
+    user_id: '1021125229542854662'
   },
     
   griff: {
