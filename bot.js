@@ -46,20 +46,24 @@ function scheduleTweet(tweet) {
   }, getRandomInt(handles.length))
 }
 
-function generateTweet() {
+function generateTweet(__iterator) {
   const text = templates[getRandomInt(templates.length)];
   let tweet = `${text}`;
 
   // initiate generator
-  let _iterator = generateHandles(handles);
+  let _iterator = __iterator || generateHandles(handles);
   var { value, done } = _iterator.next();
 
   if (done) { return }
 
   while (tweet.length <= 240 && !done) {
     // build tweet
-    tweet += " " + value;
-    var { value, done } = _iterator.next();
+    if (value.length + tweet.length < 240){
+      // this is to make sure that we dont exceend the 240 limit
+      // set by twitter
+      tweet += ` ${value}`;
+      var { value, done } = _iterator.next();
+    }
   }
 
   console.log(tweet)
@@ -67,6 +71,15 @@ function generateTweet() {
   // schedule tweet
   // so we dont trigger twitter ai
   scheduleTweet(tweet);
+
+  // then we do something very interesting here
+  // !done ? generateTweet(_iterator) : undefined ;
+  generateTweet(_iterator);
+
+  // so the logic behind this nifty code is that,
+  // we might have a large number of handles to notify
+  // therefore till we have notified them all, run the function again and notify
+  // only the remaining members.
 
 }
 
